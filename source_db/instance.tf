@@ -10,7 +10,7 @@ resource "random_string" "vncpwd" {
   length  = 10
   upper   = true
   lower   = true
-  number  = true
+  numeric  = true
   special = false
 }
 

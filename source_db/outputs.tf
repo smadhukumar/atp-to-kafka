@@ -28,6 +28,10 @@ output "remote_desktop" {
   )
 }
 
+output "Kafka_Public_ip" {
+  value = oci_core_instance.llw-hol.*.public_ip
+}
+
 output "generated_instance_ssh_private_key" {
   value = var.generate_ssh_key_pair ? tls_private_key.ssh_keypair[0].private_key_pem : null
 }

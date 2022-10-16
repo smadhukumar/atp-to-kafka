@@ -93,3 +93,8 @@ variable "database_id" {
   default = ""
 }
 
+
+
+variable "kafka_assign_public_ip" {
+  default = true
+}

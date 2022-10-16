@@ -6,6 +6,8 @@ module "source_kafka" {
          tenancy_ocid        =var.tenancy_ocid
          region              =var.region
 availability_domain_name     = data.oci_identity_availability_domains.ads.availability_domains[0].name
+subnet_id             	= oci_core_subnet.holvcn_public_subnet.id
+assign_public_ip      	= var.kafka_assign_public_ip
 }
 
 module "atp" {

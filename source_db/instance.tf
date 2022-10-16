@@ -26,7 +26,7 @@ resource "oci_core_instance" "llw-hol" {
   compartment_id      = var.compartment_ocid
   display_name        = "llw-hol-s${format("%02d", count.index + 1)}-${local.timestamp}"
   shape               = local.instance_shape
-  metadata = {
+ metadata = {
     ssh_authorized_keys = var.inst_use_ssh ? (var.generate_ssh_key_pair ? tls_private_key.ssh_keypair[0].public_key_openssh : var.ssh_public_key) : null
     vncpwd              = random_string.vncpwd[count.index].result
     desktop_guide_url   = var.desktop_guide_url
@@ -43,10 +43,10 @@ resource "oci_core_instance" "llw-hol" {
   }
 
   create_vnic_details {
-    assign_public_ip = true
+    assign_public_ip = var.assign_public_ip 
     display_name     = "llw-hol-s${format("%02d", count.index + 1)}-${local.timestamp}"
     hostname_label   = "llw-hol-s${format("%02d", count.index + 1)}-${local.timestamp}"
-    subnet_id        = local.public_subnet_id
+    subnet_id        = var.subnet_id 
   }
 
   source_details {

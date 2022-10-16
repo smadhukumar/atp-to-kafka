@@ -103,12 +103,13 @@ variable "vcn_existing" {
 variable "subnet_public_existing" {
   default = ""
 }
-
+variable "assign_public_ip" {}
+variable "subnet_id" {}
 #*************************************
 #        Local Variables
 #*************************************
 locals {
-  public_subnet_id = var.vcn_use_existing ? var.subnet_public_existing : oci_core_subnet.holvcn_public_subnet.id
+ # public_subnet_id = var.vcn_use_existing ? var.subnet_public_existing : vcn.oci_core_subnet.holvcn_public_subnet.id
   timestamp        = formatdate("YYYY-MM-DD-hhmmss", timestamp())
   instance_shape   = var.shape_use_flex ? var.flex_instance_shape : var.fixed_instance_shape
   is_flex_shape    = var.shape_use_flex ? [var.instance_shape_config_ocpus] : []

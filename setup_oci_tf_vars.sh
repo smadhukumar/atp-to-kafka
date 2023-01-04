@@ -1,0 +1,9 @@
+export TF_VAR_user_ocid="ocid1.user.oc1..aaaaaaaak5g4ym2grljbjpksud53glsf5yqrc65sz2nbmgpvx2pwsrspc2ga"
+export TF_VAR_tenancy_ocid="ocid1.tenancy.oc1..aaaaaaaagctxgby6z2mf5ku3ulentxsuxepzzsqndvtdlarpju72du4shkva"
+export TF_VAR_compartment_ocid="ocid1.compartment.oc1..aaaaaaaairhixdx5xlz2ia7zmj3wrquus4x636xhr37zcdgjxaoszofik3ia"
+export TF_VAR_fingerprint="9e:79:12:1e:a7:79:bd:4d:2e:a6:28:dc:72:5c:2c:17"
+export TF_VAR_private_key_path="/home/madhu_kuma/divya/ATPLiveLab/terraform-oci-atp-compute/oci_api_private.pem"
+export TF_VAR_region="us-ashburn-1"
+export TF_VAR_private_key_oci="/home/madhu_kuma/divya/ATPLiveLab/terraform-oci-atp-compute/id_rsa"
+export TF_VAR_public_key_oci="/home/madhu_kuma/divya/ATPLiveLab/terraform-oci-atp-compute/id_rsa.pub"
+export TF_VAR_atp_password='Or4cl3--202

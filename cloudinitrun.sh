@@ -20,7 +20,7 @@ else
   echo "Cannot proceed! This script can only be performed on systems with Enterprise Linux 7  or 8"
   exit 1
 fi
-
+f
 export public_ip=$(curl -s ifconfig.me)
 export delay_min=1
 echo ${delay_min} >/tmp/ll-setup/.delay_min
@@ -203,7 +203,10 @@ fi
 firewall-cmd --zone=public --permanent --add-service=vnc-server
 firewall-cmd --zone=public --permanent --add-port=5901/tcp
 firewall-cmd --permanent --add-port=6080/tcp
+firewall-cmd --permanent --add-port=9092/tcp
 firewall-cmd --permanent --add-port=80/tcp
+firewall-cmd --permanent --add-port=2181/tcp
+firewall-cmd --permanent --add-port=1521/tcp
 setsebool -P httpd_can_network_connect 1
 
 firewall-cmd  --reload
@@ -283,6 +286,32 @@ Name=Optimze Gnome Desktop for Livelabs
 Comment[en_US]=Launch Optimze Gnome Desktop for Livelabs
 Comment=Launch Optimze Gnome Desktop for Livelabs
 EOB2
+cat >/tmp/ll-setup/monitors.xml<<EOB5
+
+<monitors version="2">
+  <configuration>
+    <logicalmonitor>
+      <x>0</x>
+      <y>0</y>
+      <scale>1</scale>
+      <primary>yes</primary>
+      <monitor>
+        <monitorspec>
+          <connector>VNC-0</connector>
+          <vendor>unknown</vendor>
+          <product>unknown</product>
+          <serial>unknown</serial>
+        </monitorspec>
+        <mode>
+          <width>1920</width>
+          <height>1080</height>
+          <rate>60</rate>
+        </mode>
+      </monitor>
+    </logicalmonitor>
+  </configuration>
+</monitors>
+EOB5
 
 chmod +x \${appuser_home}/.config/autostart/*.desktop
 
@@ -707,5 +736,27 @@ EOF
 sudo systemctl start zookeeper.service
 sudo systemctl start kafka.service
 
-[opc@mulivelabkafkaserver:~]$
+cat >>${appuser_home}/.bash_profile <EOF
+alias consumetopic='/tmp/consume.sh'
+alias listtopic='/u01/kafka//bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list'
+EOF 
+
+cat >/tmp/consume.sh<EOF
+#! /bin/bash
+### Created by Madhu Kumar S,Data Integration
+
+
+if [ $# -eq 0 ]
+  then
+    echo "Usage: run-consumer.sh <topic_name>"
+    exit 0
+fi
+
+cd /u01/kafka
+#./bin/kafka-console-consumer.sh --bootstrap-server=localhost:9092  --topic $1 --from-beginning --property print.key=true --property key.separator='|'
+
+
+/u01/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic $1 --from-beginning  | jq
+EOF
+
 

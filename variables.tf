@@ -4,17 +4,17 @@ variable "compartment_ocid" {}
 variable "region" {}
 
 variable "fingerprint" {
-  default = "9e:79:12:1e:a7:79:bd:4d:2e:a6:28:dc:72:5c:2c:17"
+  default = "~/.ssh/oci_api_key.fingerprint"
 }
 variable "private_key_path" {
   default = "./oci_api_private.pem"
 }
 
 variable "private_key_oci" {
-  default = "./id_rsa"
+  default = "~/.ssh/oci_api_key.pem"
 }
 variable "public_key_oci" {
-  default = "./id_rsa.pub"
+  default = "~/.ssh/oci_api_key_public.pem"
 }
 variable "VCN-CIDR" {
   default = "10.0.0.0/16"

@@ -62,7 +62,7 @@ variable "database_data_storage_size_in_tbs" {
 }
 
 variable "database_db_name" {
-  default = "fkatpdb1"
+  default = "deniz"
 }
 
 variable "database_defined_tags_value" {

@@ -16,10 +16,10 @@ output "parallel_connection_string" {
 }
 
 output "remote_desktop" {
-  value = formatlist("http://%s%s%s%s",
+  value = formatlist("http://%s%s%s",
     [data.oci_core_vnic.LiveLabWebserver1_VNIC1.public_ip_address],
-    "/livelabs/vnc.html?password=",
-    random_string.vncpwd.*.result,
+    "/livelabs/vnc.html?password=LiveLabs.Rocks_99",
     "&resize=scale&quality=9&autoconnect=true&reconnect=true"
   )
 }
+

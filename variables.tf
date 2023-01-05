@@ -2,19 +2,17 @@ variable "tenancy_ocid" {}
 variable "user_ocid" {}
 variable "compartment_ocid" {}
 variable "region" {}
+variable "fingerprint" {}
 
-variable "fingerprint" {
-  default = "~/.ssh/oci_api_key.fingerprint"
-}
 variable "private_key_path" {
-  default = "./oci_api_private.pem"
+  default = "~/.ssh/oci_api_private.pem"
 }
 
 variable "private_key_oci" {
-  default = "~/.ssh/oci_api_key.pem"
+  default = "~/.ssh/oci"
 }
 variable "public_key_oci" {
-  default = "~/.ssh/oci_api_key_public.pem"
+  default = "~/.ssh/oci.pub"
 }
 variable "VCN-CIDR" {
   default = "10.0.0.0/16"

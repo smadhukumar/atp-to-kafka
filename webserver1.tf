@@ -9,7 +9,7 @@
 resource "oci_core_instance" "LiveLabWebserver1" {
   availability_domain = lookup(data.oci_identity_availability_domains.ADs.availability_domains[1], "name")
   compartment_id = oci_identity_compartment.LiveLab1Compartment.id
-  display_name = "LiveLabKafkaServer"
+  display_name = "MadhuLiveLabKafkaServer"
   shape = var.Shapes
   source_details {
     source_type = "image"
@@ -33,7 +33,7 @@ resource "oci_core_instance" "LiveLabWebserver1" {
 
   provisioner "remote-exec" {
     inline = [
-      "sh /home/opc/cloudinitrun.sh",
+      "sudo -u root sh /home/opc/cloudinitrun.sh",
     ]
   }
   create_vnic_details {

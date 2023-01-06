@@ -1,5 +1,8 @@
 echo "Kafka Installation Started............"
-
+sudo yum install java -y 
+firewall-cmd --zone=public --permanent --add-port=9092/tcp
+firewall-cmd --zone=public --permanent --add-port=2181/tcp
+firewall-cmd  --reload
 sudo mkdir /u01
 cd /u01/
 wget https://downloads.apache.org/kafka/3.3.1/kafka_2.12-3.3.1.tgz
@@ -27,7 +30,7 @@ Restart=on-abnormal
 WantedBy=multi-user.target
 EOF
 
- cat >/etc/systemd/system/kafka.service<<EOF
+cat >/etc/systemd/system/kafka.service<<EOF
 
 [Unit]
 Requires=zookeeper.service
@@ -47,10 +50,6 @@ EOF
 sudo systemctl start zookeeper.service
 sudo systemctl start kafka.service
 
-cat >>/home/opc/.bash_profile<<EOF
-alias consumetopic='/tmp/consume.sh'
-alias listtopic='/u01/kafka/bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list'
-EOF 
 
 cat >/tmp/consume.sh<<EOF
 #! /bin/bash
@@ -70,7 +69,10 @@ cd /u01/kafka
 /u01/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic \$1 --from-beginning  | jq
 EOF
 
-chown opc:opc /tmp/consume.sh
-chmod +x /tmp/consume.sh
+sudo chown opc:opc /tmp/consume.sh
+sudo chmod +x /tmp/consume.sh
 
-
+cat >>/home/opc/.bash_profile<<EOF
+alias consumetopic='/tmp/consume.sh'
+alias listtopic='/u01/kafka/bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list'
+EOF 

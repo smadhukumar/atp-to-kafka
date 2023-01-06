@@ -9,7 +9,7 @@
 resource "oci_core_instance" "LiveLabWebserver1" {
   availability_domain = lookup(data.oci_identity_availability_domains.ADs.availability_domains[1], "name")
   compartment_id = oci_identity_compartment.LiveLab1Compartment.id
-  display_name = "MadhuLiveLabKafkaServer"
+  display_name = "LiveLabKafkaServer"
   shape = var.Shapes
   source_details {
     source_type = "image"

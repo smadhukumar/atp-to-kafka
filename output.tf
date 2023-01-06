@@ -1,4 +1,4 @@
-output "LiveLabWebserver1PublicIP" {
+output "LiveLab_Kafka_BootStrap_Server_PublicIP" {
    value = [data.oci_core_vnic.LiveLabWebserver1_VNIC1.public_ip_address]
 }
 
@@ -15,7 +15,7 @@ output "parallel_connection_string" {
   value    = [lookup(oci_database_autonomous_database.LiveLab_ATP_primary_database.connection_strings.0.all_connection_strings, "PARALLEL", "Unavailable")]
 }
 
-output "remote_desktop" {
+output "remote_ssh_connection" {
   value = formatlist("ssh -i ~/.ssh/oci opc@%s",
     [data.oci_core_vnic.LiveLabWebserver1_VNIC1.public_ip_address]
   )

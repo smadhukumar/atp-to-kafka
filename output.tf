@@ -15,7 +15,7 @@ output "parallel_connection_string" {
   value    = [lookup(oci_database_autonomous_database.LiveLab_ATP_primary_database.connection_strings.0.all_connection_strings, "PARALLEL", "Unavailable")]
 }
 
-output "remote_ssh_connection" {
+output "Kafka_Server_Remote_SSH_Connection" {
   value = formatlist("ssh -i ~/.ssh/oci opc@%s",
     [data.oci_core_vnic.LiveLabWebserver1_VNIC1.public_ip_address]
   )

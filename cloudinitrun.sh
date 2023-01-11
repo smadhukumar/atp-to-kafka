@@ -69,7 +69,7 @@ cd /u01/kafka
 /u01/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic \$1 --from-beginning  | jq
 EOF
 
-sudo chown opc:opc /tmp/consume.sh
+sudo chown -R opc:opc /tmp/consume.sh
 sudo chmod +x /tmp/consume.sh
 
 cat >>/home/opc/.bash_profile<<EOF

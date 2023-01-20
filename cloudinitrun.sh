@@ -2,6 +2,7 @@ echo "Kafka Installation Started............"
 sudo yum install java -y 
 firewall-cmd --zone=public --permanent --add-port=9092/tcp
 firewall-cmd --zone=public --permanent --add-port=2181/tcp
+firewall-cmd --zone=public --permanent --add-port=22/tcp
 firewall-cmd  --reload
 sudo mkdir /u01
 cd /u01/
@@ -54,25 +55,16 @@ sudo systemctl start kafka.service
 cat >/tmp/consume.sh<<EOF
 #! /bin/bash
 ### Created by Madhu Kumar S,Data Integration
-
-
 if [ \$# -eq 0 ]
   then
     echo "Usage: run-consumer.sh <topic_name>"
     exit 0
 fi
-
-cd /u01/kafka
-#./bin/kafka-console-consumer.sh --bootstrap-server=localhost:9092  --topic $1 --from-beginning --property print.key=true --property key.separator='|'
-
-
 /u01/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic \$1 --from-beginning  | jq
 EOF
 
 sudo chown -R opc:opc /tmp/consume.sh
 sudo chmod +x /tmp/consume.sh
 
-cat >>/home/opc/.bash_profile<<EOF
-alias consumetopic='/tmp/consume.sh'
-alias listtopic='/u01/kafka/bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list'
-EOF 
+echo 'alias consumetopic='/tmp/consume.sh''>>/home/opc/.bash_profile
+echo 'alias listtopic='/u01/kafka/bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list''>>/home/opc/.bash_profile 

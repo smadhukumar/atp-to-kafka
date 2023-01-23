@@ -66,5 +66,5 @@ EOF
 sudo chown -R opc:opc /tmp/consume.sh
 sudo chmod +x /tmp/consume.sh
 
-echo 'alias consumetopic='/tmp/consume.sh''>>/home/opc/.bash_profile
-echo 'alias listtopic='/u01/kafka/bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list''>>/home/opc/.bash_profile 
+echo "alias consumetopic='/tmp/consume.sh'">>/home/opc/.bash_profile
+echo "alias listtopic='/u01/kafka/bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list'">>/home/opc/.bash_profile 

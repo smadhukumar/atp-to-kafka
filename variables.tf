@@ -4,6 +4,7 @@ variable "compartment_ocid" {}
 variable "region" {}
 variable "fingerprint" {}
 
+
 variable "private_key_path" {
   default = "~/.ssh/oci_api_private.pem"
 }
@@ -33,7 +34,7 @@ variable "Shapes" {
 }
 
 variable "OsImage" {
-  default = "Oracle-Linux-7.8-2020.05.26-0"
+  default = "Oracle-Linux-7.9-2022.12.15-0"
 }
 
 variable "service_ports" {
@@ -70,7 +71,7 @@ variable "database_defined_tags_value" {
 }
 
 variable "database_display_name" {
-  default = "LiveLabATP_primary"
+  default = "ATP_Source"
 }
 
 variable "remote_standby_database_display_name" {

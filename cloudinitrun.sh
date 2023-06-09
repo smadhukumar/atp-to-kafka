@@ -6,7 +6,7 @@ firewall-cmd --zone=public --permanent --add-port=22/tcp
 firewall-cmd  --reload
 sudo mkdir /u01
 cd /u01/
-wget -q https://objectstorage.us-phoenix-1.oraclecloud.com/n/axvzt5deuijx/b/deniz-gg/o/kafka_2.12-3.3.2.tgz
+wget -q https://objectstorage.us-phoenix-1.oraclecloud.com/p/vQ1bOYKTk1x92GFSMyWxnmiC6eJlCz0_F8KbD4PH12N_gHKkrD6PY6T0C_UipRcI/n/axvzt5deuijx/b/deniz-gg/o/kafka_2.12-3.3.2.tgz
 tar -xzf kafka_2.12-3.3.2.tgz
 mv kafka_2.12-3.3.2 kafka
 cd kafka/

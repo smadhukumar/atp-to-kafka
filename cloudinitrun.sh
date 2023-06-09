@@ -27,12 +27,13 @@ After=network.target remote-fs.target
 [Service]
 Type=simple
 User=opc
-ExecStart=/u01/kafka/bin/zookeeper-server-start.sh /u01/kafka/config/zookeeper.properties
+ExecStart=/bin/sh -c '/u01/kafka/bin/zookeeper-server-start.sh /u01/kafka/config/zookeeper.properties > /u01/kafka/zoo.log 2>&1'
 ExecStop=/u01/kafka/bin/zookeeper-server-stop.sh
 Restart=on-abnormal
 
 [Install]
 WantedBy=multi-user.target
+
 EOF
 
 cat >/etc/systemd/system/kafka.service<<EOF

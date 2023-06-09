@@ -12,9 +12,9 @@ resource "oci_core_instance" "LiveLabWebserver1" {
   display_name = "LiveLabKafkaServer"
   shape = var.Shapes
   source_details {
-    source_type = "image"
-    source_id   = "ocid1.image.oc1.iad.aaaaaaaapulaxjedwo2y3koeli6zq6evql6rropyxpni3wu44i2rbffgxgza"
-  }
+	source_type = "image"
+    	source_id   =local.region1
+}
   metadata = {
       ssh_authorized_keys = file(var.public_key_oci)
    #   user_data = "${base64encode(file("./cloudinitrun.sh"))}"
@@ -41,7 +41,7 @@ resource "oci_core_instance" "LiveLabWebserver1" {
      assign_public_ip = true 
   }
   shape_config {
-      memory_in_gbs = 7
+      memory_in_gbs =  7 
       ocpus = 1
   }
 }

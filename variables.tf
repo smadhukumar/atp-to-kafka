@@ -34,7 +34,7 @@ variable "Shapes" {
 }
 
 variable "OsImage" {
-  default = "Oracle-Linux-7.9-2022.12.15-0"
+  default = "Oracle-Linux-8.7-2023.04.25-0"
 }
 
 variable "service_ports" {
@@ -45,7 +45,7 @@ variable "service_ports" {
 #atp
 
 variable "atp_password" {
-  default = "Or4cl3--2022"
+  default = "Or4cl3##2023"
 }
 variable "primaryregion" {
   default = ""
@@ -63,7 +63,7 @@ variable "database_data_storage_size_in_tbs" {
 }
 
 variable "database_db_name" {
-  default = "deniz"
+  default = "lielab"
 }
 
 variable "database_defined_tags_value" {

@@ -6,13 +6,17 @@ firewall-cmd --zone=public --permanent --add-port=22/tcp
 firewall-cmd  --reload
 sudo mkdir /u01
 cd /u01/
-wget https://downloads.apache.org/kafka/3.3.1/kafka_2.12-3.3.1.tgz
-tar -xzf kafka_2.12-3.3.1.tgz
-mv kafka_2.12-3.3.1 kafka
+wget -q https://objectstorage.us-phoenix-1.oraclecloud.com/n/axvzt5deuijx/b/deniz-gg/o/kafka_2.12-3.3.2.tgz
+tar -xzf kafka_2.12-3.3.2.tgz
+mv kafka_2.12-3.3.2 kafka
 cd kafka/
 vIP=$(curl -s ifconfig.me)
 sed -i -e "s|#advertised.listeners=PLAINTEXT://your.host.name:9092|advertised.listeners=PLAINTEXT://$vIP:9092|g" config/server.properties
 sudo chown -R opc:opc /u01/
+
+cat >>/etc/hosts<<EOF
+$vIP  `hostname -A` 
+EOF
 
 cat >/etc/systemd/system/zookeeper.service<<EOF
 

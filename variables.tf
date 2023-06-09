@@ -63,7 +63,7 @@ variable "database_data_storage_size_in_tbs" {
 }
 
 variable "database_db_name" {
-  default = "lielab"
+  default = "livelab"
 }
 
 variable "database_defined_tags_value" {

@@ -13,4 +13,5 @@ output "LiveLab_ATP_database_admin_password" {
 
 output "ATP_Connection_URLS" {
   value    =  oci_database_autonomous_database.LiveLab_ATP_primary_database.connection_urls
+}
 

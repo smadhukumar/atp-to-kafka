@@ -6,9 +6,9 @@ firewall-cmd --zone=public --permanent --add-port=22/tcp
 firewall-cmd  --reload
 sudo mkdir /u01
 cd /u01/
-wget -q https://objectstorage.us-phoenix-1.oraclecloud.com/p/vQ1bOYKTk1x92GFSMyWxnmiC6eJlCz0_F8KbD4PH12N_gHKkrD6PY6T0C_UipRcI/n/axvzt5deuijx/b/deniz-gg/o/kafka_2.12-3.3.2.tgz
-tar -xzf kafka_2.12-3.3.2.tgz
-mv kafka_2.12-3.3.2 kafka
+wget -q https://axvzt5deuijx.objectstorage.us-phoenix-1.oci.customer-oci.com/p/RnfrKhrBhuRtY87xyRkVkIGW-k-nObxFzI8435VsjTzeLRXRK5jD0-MPD0bRI9JU/n/axvzt5deuijx/b/kafka-livelab/o/kafka_2.12-3.6.0.tgz
+tar -xzf kafka_2.12-3.6.0.tgz
+mv kafka_2.12-3.6.0 kafka
 cd kafka/
 vIP=$(curl -s ifconfig.me)
 sed -i -e "s|#advertised.listeners=PLAINTEXT://your.host.name:9092|advertised.listeners=PLAINTEXT://$vIP:9092|g" config/server.properties
